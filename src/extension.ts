@@ -1,26 +1,26 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { CompletionItem } from 'vscode';
+import { inflate } from 'zlib';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
+	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext):
+		Thenable<vscode.CompletionItem[]> {
+		if (context.triggerCharacter === "$") {
+			return Promise.resolve([
+				{ label: "$int", insertText: "int", kind: vscode.CompletionItemKind.Function },
+				{ label: "$string", insertText: "string", kind: vscode.CompletionItemKind.Function },
+				{ label: "$float", insertText: "float", kind: vscode.CompletionItemKind.Function },
+				{ label: "$print", insertText: "print", kind: vscode.CompletionItemKind.Function },
+			]);
+		}
+		return Promise.resolve([]);
+	}
+}
+
 export function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "neko-auto-complete" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('neko-auto-complete.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from neko-auto-complete!');
-	});
-
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(vscode.languages.registerCompletionItemProvider("plaintext", new NekoCompletionItemProvider(), "$"));
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+}
