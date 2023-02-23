@@ -1,19 +1,22 @@
 import * as vscode from 'vscode';
 import { CompletionItem } from 'vscode';
-import { inflate } from 'zlib';
+import { functions } from './syntax/functions';
 
 class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext):
-		Thenable<vscode.CompletionItem[]> {
-		if (context.triggerCharacter === "$") {
-			return Promise.resolve([
-				{ label: "$int", insertText: "int", kind: vscode.CompletionItemKind.Function },
-				{ label: "$string", insertText: "string", kind: vscode.CompletionItemKind.Function },
-				{ label: "$float", insertText: "float", kind: vscode.CompletionItemKind.Function },
-				{ label: "$print", insertText: "print", kind: vscode.CompletionItemKind.Function },
-			]);
-		}
-		return Promise.resolve([]);
+		CompletionItem[] {
+		const line = document.lineAt(position.line).text;
+		const lineTillCurrentPosition = line.substring(0, position.character + 1);
+		let ret: CompletionItem[] = [];
+		functions.forEach(element => {
+			if (element.label.startsWith(lineTillCurrentPosition)) {
+				let item = new CompletionItem(element.label, vscode.CompletionItemKind.Function);
+				item.documentation = element.documentation;
+				item.insertText = element.insertText.replace(lineTillCurrentPosition, "");
+				ret.push(item);
+			}
+		});
+		return ret;
 	}
 }
 
