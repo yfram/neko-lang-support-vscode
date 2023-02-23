@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { CompletionItem } from 'vscode';
-import { functions } from './syntax/functions';
+import { functions } from './syntax';
 
 class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext):
