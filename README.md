@@ -1,8 +1,7 @@
-# Neko Language Support (unofficial)
+# Neko Language Autocomplete (unofficial)
 
-This extension adds language support for the Neko language to Visual Studio Code.
+This extension adds autocomplete support for the Neko language to Visual Studio Code.
 
 ## Features
 
 Autocomplete for the Neko language.
-Add icon for .neko files.
