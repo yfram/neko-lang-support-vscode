@@ -10,23 +10,26 @@ class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
 		const lineTillCurrentPosition = line.substring(0, position.character);
 		let ret: CompletionItem[] = [];
 		let declaredVariables = getDeclaredVariables(document);
-		syntax.push({
+		let allWords = [
+			...syntax
+		];
+		allWords.push({
 			kind: vscode.CompletionItemKind.Variable,
 			items: declaredVariables.map(element => {
 				return {
 					label: element,
 					documentation: "Variable"
-				}
+				};
 			})
 		});
-		syntax.forEach(list => list.items.forEach(element => {
+		allWords.forEach(list => list.items.forEach(element => {
 			if (element.label.startsWith(lineTillCurrentPosition)) {
 				let item = new CompletionItem(element.label, list.kind);
 				item.documentation = element.documentation;
 				if (element.insertText) {
 					item.insertText = element.insertText;
 				}
-				ret.push(item );
+				ret.push(item);
 			}
 		}));
 		return ret;
@@ -35,7 +38,4 @@ class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.languages.registerCompletionItemProvider("plaintext", new NekoCompletionItemProvider(), "$"));
-}
-
-export function deactivate() {
 }

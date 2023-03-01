@@ -1,4 +1,3 @@
-import { isRegExp } from "util/types";
 import { Position, TextDocument } from "vscode";
 import { syntax } from "./syntax";
 
@@ -29,7 +28,7 @@ class Token {
 
 const peek = (document: TextDocument, position: Position, offset: number = 1): string => {
     return document.lineAt(position.line).text.charAt(position.character + offset);
-}
+};
 
 function tokenize(document: TextDocument, startPos: Position): Token[] {
     let tokens: Token[] = [];
