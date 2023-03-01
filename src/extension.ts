@@ -9,6 +9,16 @@ class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
 		const line = document.lineAt(position.line).text;
 		const lineTillCurrentPosition = line.substring(0, position.character);
 		let ret: CompletionItem[] = [];
+		let declaredVariables = getDeclaredVariables(document);
+		syntax.push({
+			kind: vscode.CompletionItemKind.Variable,
+			items: declaredVariables.map(element => {
+				return {
+					label: element,
+					documentation: "Variable"
+				}
+			})
+		});
 		syntax.forEach(list => list.items.forEach(element => {
 			if (element.label.startsWith(lineTillCurrentPosition)) {
 				let item = new CompletionItem(element.label, list.kind);
@@ -16,11 +26,9 @@ class NekoCompletionItemProvider implements vscode.CompletionItemProvider {
 				if (element.insertText) {
 					item.insertText = element.insertText;
 				}
-				ret.push(item);
+				ret.push(item );
 			}
 		}));
-		let declaredVariables = getDeclaredVariables(document);
-		console.log(declaredVariables);
 		return ret;
 	}
 }

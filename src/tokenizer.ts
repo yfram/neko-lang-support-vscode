@@ -27,6 +27,10 @@ class Token {
     constructor(public value: string, public position: Position, public type: TokenType) { }
 }
 
+const peek = (document: TextDocument, position: Position, offset: number = 1): string => {
+    return document.lineAt(position.line).text.charAt(position.character + offset);
+}
+
 function tokenize(document: TextDocument, startPos: Position): Token[] {
     let tokens: Token[] = [];
     let position = startPos;
@@ -34,10 +38,7 @@ function tokenize(document: TextDocument, startPos: Position): Token[] {
         let line = document.lineAt(position.line).text;
         while (position.character < line.length) {
             let char = line.charAt(position.character);
-            if (char === " " || char === "\t") {
-                position = position.translate(0, 1);
-            }
-            else {
+            if (char !== " " && char !== "\t") {
                 switch (char) {
                     case '(':
                         tokens.push(new Token(char, position, TokenType.openParenthesis));
@@ -228,6 +229,7 @@ function tokenize(document: TextDocument, startPos: Position): Token[] {
                         while (position.character !== line.length && ![" ", "\t", "(", ")", "[", "]", "{", "}", ",", ";", "."].includes(line.charAt(position.character))) {
                             char = line.charAt(position.character);
                             word += char;
+                            if (["(", ")", "[", "]", "{", "}", ",", ";", "."].includes(peek(document, position))) { break; }
                             position = position.translate(0, 1);
                         }
                         if (RegExp(/((0xf\d+)|(\d+))|(\d*\.\d+)|(\".*\")/).test(word)) {
@@ -260,11 +262,11 @@ export function getDeclaredVariables(document: TextDocument, startPos?: Position
     if (tokens.length < 3) { return []; }
     let identifiers: string[] = [];
     tokens.forEach((token, index) => {
-        if (token.type === TokenType.identifier && tokens[index + 1].value === "=" && tokens[index + 2].type === TokenType.value) {
+        if (token.type !== TokenType.identifier) { return; }
+        if ((index < tokens.length && tokens[index + 1].value === "=" && tokens[index + 2].type === TokenType.value)
+            || (index > 0 && tokens[index - 1].value === "var")) {
             identifiers.push(token.value);
         }
     });
     return identifiers;
 }
-
-
