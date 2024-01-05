@@ -2,7 +2,7 @@ repo_name: yfram/neko-lang-support-vscode
 report_id: 894d140c7a6323733bc4a56c3ed1678a
 version: 0.1
 repo_type: Public
-timestamp: '2023-12-20T09:13:31+00:00'
+timestamp: '2024-01-05T08:19:44+00:00'
 requested_by: yfram
 provider: github
 branch: main
@@ -17,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/package.json
   detection_source: package.json
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 16:38:07.000000000 Z
@@ -29,6 +30,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1612/bynNY5dJ.jpg
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode
   detection_source: Repo Metadata
 - name: ".NET"
   description: A free, cross-platform, open source developer platform for building
@@ -40,6 +42,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1014/IoPy1dce_400x400.png
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/package.json
   detection_source: package.json
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 15:04:49.000000000 Z
@@ -52,6 +55,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/package.json
   detection_source: package.json
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 15:04:49.000000000 Z
@@ -64,6 +68,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Code Review
   image_url: https://img.stackshare.io/service/3337/Q4L7Jncy.jpg
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/package.json
   detection_source: package.json
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 15:04:49.000000000 Z
@@ -75,6 +80,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode
   detection_source: Repo Metadata
 - name: Mocha
   description: Simple, flexible, fun javascript test framework for node.js &amp; the
@@ -99,6 +105,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Package Managers
   image_url: https://img.stackshare.io/service/2637/6I3oEOP4_400x400.jpg
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/package.json
   detection_source: package.json
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 15:04:49.000000000 Z
@@ -111,6 +118,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Text Editor
   image_url: https://img.stackshare.io/service/4202/Visual_Studio_Code_logo.png
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/.vscode/tasks.json
   detection_source: ".vscode/tasks.json"
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 15:04:49.000000000 Z
@@ -122,6 +130,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/yfram/neko-lang-support-vscode/blob/main/package.json
   detection_source: package.json
   last_updated_by: Yoni
   last_updated_on: 2023-02-23 15:04:49.000000000 Z
